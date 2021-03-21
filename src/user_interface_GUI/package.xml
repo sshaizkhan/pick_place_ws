@@ -73,5 +73,6 @@
   <export>
     <!-- Other tools can request additional information be placed here -->
     <rqt_gui plugin="${prefix}/user_interface_control.xml"/>
+
   </export>
 </package>
