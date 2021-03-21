@@ -11,6 +11,7 @@
             <group>
               <label>Subgroup</label>
             </group>
+
             -->
             <label>Python plugin for user interface</label>
             <icon type="theme">system-help</icon>
