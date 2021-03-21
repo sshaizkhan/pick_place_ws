@@ -5,6 +5,7 @@
   <arg name="paused" default="false"/>
   <arg name="gzweb" default="false"/>
   <arg name="verbose" default="false"/>
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" />
 
   <group if="$(arg start_gazebo)">
     <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->

@@ -1,24 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 
-	
- 
+  <arg name="gui" default="true"/>
+  <arg name="start_gazebo" default="true"/>
+  <arg name="limited" default="false"/>
+  <arg name="paused" default="false"/>
+  <arg name="gzweb" default="false"/>
+  <arg name="verbose" default="false"/>
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" />
+
     <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
-      <arg name="physics" value="ode"/>
-    </include>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="worlds/empty.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="physics" value="ode"/>
+    <env name="GAZEBO_MODEL_PATH" value="~/.gazebo/models:/workspace/src:/workspace/src/universal_robot:${GAZEBO_MODEL_PATH}"/>
+  </include>
     
-    <param name="robot_description" command="cat '$(find fh_desc)/model.urdf'" />
+  <param name="robot_description" command="cat '$(find fh_desc)/model_1.urdf'" />
+  <rosparam command="load" file = "$(find ur10_moveit_config)/config/controllers.yaml"/>
+  <param name="table_description" command="cat '$(find ur5_planning)/urdf/robot_table.urdf'"/>
 
-    <arg name="x" default="0"/>
 
-    <arg name="y" default="0"/>
+  <arg name="x" default="0"/>
+  <arg name="y" default="1.0"/>
+  <arg name="z" default="-0.1972"/>
+  <arg name="roll" default="0.0"/>
+  <arg name="pitch" default="0.0"/>
+  <arg name="yaw" default="0.0"/>
 
-    <arg name="z" default="0.5"/>
+<!--  <node name="world_to_arm_base" pkg="tf" type="static_transform_publisher" args="0 1 0 0 0 0 world base_link 100" />-->
+  <include file="$(find ur_gazebo)/launch/controller_utils.launch"/>
 
-    
-    
-    <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-          args="-urdf -param robot_description -model model -x $(arg x) -y $(arg y) -z $(arg z)" />
-          
+  <rosparam file="$(find ur_gazebo)/controller/arm_controller_ur10.yaml" command="load"/>
+  <param name="arm_controller/allow_partial_joints_goal" value="true"/>
+  <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/>
+
+  <rosparam command="load" file="$(find fh_desc)/config/hand_H_gazebo_trajectory.yaml"/>
+<!--  <rosparam file="$(find fh_desc)/config/robot_control.yaml" command="load"/>-->
+  <node name="spawn_hand_controller" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="--shutdown-timeout=1.0 --timeout=360.0 hand_controller" />
+
+  <!-- load other controllers -->
+<!--  <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="load joint_group_position_controller" />-->
+
+
+  <node name="spawn_robot_table" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-urdf
+        -param table_description
+        -model robot_table
+         -x -0.254
+         -y 0.0
+         -z 0.005
+         -Y 1.5708" />
+
+  <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" respawn="false"
+        args="-urdf 
+        -model model
+        -param robot_description
+        -x $(arg x) 
+        -y $(arg y) 
+        -z $(arg z) 
+        -R $(arg roll) 
+        -P $(arg pitch) 
+        -Y $(arg yaw)
+        -J elbow_joint 1.5708" />
 </launch>
