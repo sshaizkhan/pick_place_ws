@@ -1,3 +1,4 @@
+#This YAML file contain names of the controller used for both ur5 and shadow robotic fingers end-effector
 controller_list:
   - name: arm_controller
     action_ns: follow_joint_trajectory
