@@ -17,9 +17,15 @@
     <node name="spawn_brick_wp_small" pkg="gazebo_ros" type="spawn_model" output="screen"
           args="-file $(find process_visualiser)/urdf/brick_wp_small.urdf
           -urdf
-
           -Y 1.57
           -model brick_wp_small"/>
+
+    <node name="spawn_brick_wp_large" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/brick_wp_large.urdf
+          -urdf
+          -x 1.2
+          -Y 1.57
+          -model brick_wp_large"/>
 
 </launch>
 
