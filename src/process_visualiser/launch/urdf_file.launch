@@ -21,6 +21,22 @@
           -y 1
           -model wp_placement_table"/>
 
+    <node name="spawn_cylindrical_assembly_shelf" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/cylindrical_assembly_shelf.urdf
+          -urdf
+          -x -0.8
+          -z 1.2
+          -R 1.57
+          -Y 1.57
+          -model cylindrical_assembly_shelf"/>
+
+    <node name="spawn_shelf_table" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/robot_table.urdf
+          -urdf
+          -x -1
+          -Y 1.57
+          -model shelf_table"/>
+
     <node name="spawn_brick_wp_small" pkg="gazebo_ros" type="spawn_model" output="screen"
           args="-file $(find process_visualiser)/urdf/brick_wp_small.urdf
           -urdf
