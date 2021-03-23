@@ -167,17 +167,13 @@ include_directories(
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
 
-install(PROGRAMS scripts/user_interface_GUI
-        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-        )
-
 install(DIRECTORY
-        resource
+        resources
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
         )
 
 install(FILES
-        plugin.xml
+        user_interface_control.xml
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
         )
 
