@@ -34,6 +34,14 @@
           -Y 1.57
           -model cylindrical_wp_small"/>
 
+    <node name="spawn_cylindrical_wp_large" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/cylindrical_wp_large.urdf
+          -urdf
+          -x 2
+          -y 1
+          -Y 1.57
+          -model cylindrical_wp_large"/>
+
 </launch>
 
 
