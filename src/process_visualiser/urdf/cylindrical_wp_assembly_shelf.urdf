@@ -6,10 +6,8 @@
                 <mesh filename="package://process_visualiser/resources/meshes_resized/cylindrical_wp_assembly_shelf.stl"
                       scale="1 1 1"/>
             </geometry>
-<!--            <material name="ABS" >-->
-<!--                <color rgba="0.3 0.7 0.5 1.0" />-->
-<!--            </material>-->
         </visual>
+
         <inertial>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <mass value="1"/>
