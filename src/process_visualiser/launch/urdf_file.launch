@@ -1,0 +1,80 @@
+<launch>
+    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+
+    <node name="spawn_robot1_table" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/robot_table.urdf
+          -urdf
+          -Y 1.57
+          -model robot1_table"/>
+
+    <node name="spawn_wp_placement_table" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/wp_placement_table.urdf
+          -urdf
+          -x 0.55
+          -y 1
+          -model wp_placement_table"/>
+
+    <node name="spawn_robot2_table" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/robot_table.urdf
+          -urdf
+          -x 0.95
+          -y 2
+          -Y 3.14
+          -model robot2_table"/>
+
+    <node name="spawn_cylindrical_assembly_shelf" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/cylindrical_wp_assembly_shelf.urdf
+          -urdf
+          -x -0.95
+          -z 1.2
+          -R 1.57
+          -Y 1.57
+          -model cylindrical_assembly_shelf"/>
+
+    <node name="spawn_shelf_table" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/robot_table.urdf
+          -urdf
+          -x -1
+          -Y 1.57
+          -model shelf_table"/>
+
+    <node name="spawn_brick_wp_small" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/brick_wp_small.urdf
+          -urdf
+          -z 0.8
+          -Y 1.57
+          -model brick_wp_small"/>
+
+    <node name="spawn_brick_wp_large" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/brick_wp_large.urdf
+          -urdf
+          -x 1.2
+          -Y 1.57
+          -model brick_wp_large"/>
+
+    <node name="spawn_cylindrical_wp_small" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/cylindrical_wp_small.urdf
+          -urdf
+          -x 2
+          -Y 1.57
+          -model cylindrical_wp_small"/>
+
+    <node name="spawn_cylindrical_wp_large" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/cylindrical_wp_large.urdf
+          -urdf
+          -x 2
+          -y 1
+          -Y 1.57
+          -model cylindrical_wp_large"/>
+
+</launch>
+
+
+
