@@ -8,11 +8,11 @@
         <arg name="debug" value="false"/>
     </include>
 
-    <node name="spawn_robot_table" pkg="gazebo_ros" type="spawn_model" output="screen"
+    <node name="spawn_robot1_table" pkg="gazebo_ros" type="spawn_model" output="screen"
           args="-file $(find process_visualiser)/urdf/robot_table.urdf
           -urdf
           -Y 1.57
-          -model robot_table"/>
+          -model robot1_table"/>
 
     <node name="spawn_wp_placement_table" pkg="gazebo_ros" type="spawn_model" output="screen"
           args="-file $(find process_visualiser)/urdf/wp_placement_table.urdf
@@ -21,10 +21,18 @@
           -y 1
           -model wp_placement_table"/>
 
-    <node name="spawn_cylindrical_assembly_shelf" pkg="gazebo_ros" type="spawn_model" output="screen"
-          args="-file $(find process_visualiser)/urdf/cylindrical_assembly_shelf.urdf
+    <node name="spawn_robot2_table" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/robot_table.urdf
           -urdf
-          -x -0.8
+          -x 0.95
+          -y 2
+          -Y 3.14
+          -model robot2_table"/>
+
+    <node name="spawn_cylindrical_assembly_shelf" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-file $(find process_visualiser)/urdf/cylindrical_wp_assembly_shelf.urdf
+          -urdf
+          -x -0.95
           -z 1.2
           -R 1.57
           -Y 1.57
@@ -40,6 +48,7 @@
     <node name="spawn_brick_wp_small" pkg="gazebo_ros" type="spawn_model" output="screen"
           args="-file $(find process_visualiser)/urdf/brick_wp_small.urdf
           -urdf
+          -z 0.8
           -Y 1.57
           -model brick_wp_small"/>
 

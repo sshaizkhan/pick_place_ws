@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot name="cylindrical_assembly_shelf">
+    <link name="cylindrical_assembly_shelf_origin">
+        <visual>
+            <geometry>
+                <mesh filename="package://process_visualiser/resources/meshes_resized/rectangular_wp_assembly_shelf.stl"
+                      scale="1 1 1"/>
+            </geometry>
+        </visual>
+
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1"/>
+            <inertia
+                    ixx="1.0" ixy="0.0" ixz="0.0"
+                    iyy="1.0" iyz="0.0"
+                    izz="1.0"/>
+        </inertial>
+
+        <collision>
+            <geometry>
+                <mesh filename="package://process_visualiser/resources/meshes_resized/rectangular_wp_assembly_shelf.stl"
+                      scale="1 1 1"/>
+            </geometry>
+            <surface>
+                <contact>
+                    <ode>
+                        <min_depth>0.01</min_depth>
+                        <max_vel>0.0</max_vel>
+                    </ode>
+                </contact>
+            </surface>
+        </collision>
+
+    </link>
+    <link name="world"/>
+
+    <joint name="fixed" type="fixed">
+        <parent link="world"/>
+        <child link="cylindrical_assembly_shelf_origin"/>
+    </joint>
+
+    <gazebo reference="cylindrical_assembly_shelf_origin">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+</robot>
