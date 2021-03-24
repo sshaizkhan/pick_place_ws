@@ -19,6 +19,21 @@
                     izz="1.0"/>
         </inertial>
 
+        <collision>
+            <geometry>
+                <mesh filename="package://process_visualiser/resources/meshes_resized/cylindrical_wp_80mm.stl"
+                      scale="1 1 1"/>
+            </geometry>
+            <surface>
+                <contact>
+                    <ode>
+                        <min_depth>0.01</min_depth>
+                        <max_vel>0.0</max_vel>
+                    </ode>
+                </contact>
+            </surface>
+        </collision>
+
     </link>
     <link name="world"/>
 
